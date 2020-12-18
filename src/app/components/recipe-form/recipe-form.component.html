@@ -1,0 +1,75 @@
+<div class="col-md-8">
+  <div class="card">
+      <div class="card-body">
+        <form enctype="multipart/form-data">
+          <div class="form-group">
+            <label>Receta:</label>
+            <input type="text" name="name" [(ngModel)]="recipe.name" placeholder="que receta vas a introducir?" class="form-control">
+          </div>
+          <div class="form-group">
+              <label>Categoría:</label>
+              <input type="text" name="category" [(ngModel)]="recipe.category" placeholder="ejemplo: tradicional, postre, básico" class="form-control">
+          </div>
+          <div class="form-group">
+              <label>Dificultad:</label>
+              <select name="difficulty" class="form-control" [(ngModel)]="recipe.difficulty">
+                <option value=0>muy fácil</option>
+                <option value=1>fácil</option>
+                <option value=2>normal</option>
+                <option value=3>difícil</option>
+                <option value=4>muy difícil</option>          
+              </select>
+          </div>
+          <div class="form-group">
+            <label>Imagen:</label>
+            <input #image type="file" accept="image/*" name="image" class="form-control-file" (change)="processFile(image)" >
+          </div>
+          <div class="form-group">
+              <label>Ingredientes:</label>
+              <ul *ngIf="ingredients" class="list-group mb-3">
+                <li *ngFor="let ingr of ingredients; let i = index;" class="list-group-item list-group-item-info">
+                    <div class="row">
+                      <div class="col"> {{ ingr.name }} ( {{ ingr.quantity }} )</div>
+                      <div class="col-auto"><button class="btn btn-link" (click) = "deleteIngr(i)">X</button></div>
+                    </div>
+                </li>
+              </ul>
+              <div class="row">
+                <div class="col-md-5">
+                  <input type="text" name="ingredient" [(ngModel)]="ingredient" placeholder="Que ingredientes necesitas?" class="form-control">
+                </div>
+                <div class="col-md-5">
+                  <input type="text" name="quantity" [(ngModel)]="quantity" placeholder="Que cantidad necesitas?" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary ml-auto" (click)="addIngredient()">Añadir</button>
+                </div> 
+              </div>
+          </div>      
+          <div class="form-group">
+              <label>Pasos:</label>
+              <ul *ngIf="steps" class="list-group mb-3">
+                <li *ngFor="let step of steps; let i = index;" class="list-group-item list-group-item-warning">
+                  <div class="row">
+                    <div class="col"> {{ step.description }} </div>
+                    <div class="col-auto"><button class="btn btn-link" (click) = "deleteStep(i)">X</button></div>
+                  </div>
+                </li>
+              </ul>
+              <div class="row">
+                <div class="col-md-10">
+                    <textarea name="step" [(ngModel)]="step" placeholder="introduce las instrucciones" class="form-control"></textarea>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" (click)="addStep()">Añadir</button>
+                </div> 
+              </div>
+          </div>     
+          <button class="btn btn-success btn-block mt-4" (click)="saveRecipe()">Guardar receta</button>
+        </form>
+      </div>
+    </div>
+</div>
+<div class="col-md-4">
+  <img class="img-thumbnail" name="imagePreview" [src]="url" *ngIf="url">
+</div>

@@ -1,0 +1,32 @@
+<div class="container-fluid" *ngIf="recipe">
+  <div class="row">
+      <div class="col-md-11"><h1>{{recipe.name}}</h1></div>
+      <div class="col-md-1 float-right">
+        <a routerLink="/recipes/edit/{{recipe._id}}" class="btn btn-danger btn-block">Editar</a>
+      </div>        
+  </div>
+  <img *ngIf="recipe.imagePath" src="{{server + recipe.imagePath}}" class="img-thumbnail" width="200px">
+  <div class="row my-3">
+    <div class="col-auto" [ngSwitch]="recipe.difficulty">
+      <div *ngSwitchCase="0" class="badge badge-info">muy fácil</div>
+      <div *ngSwitchCase="1" class="badge badge-success">fácil</div>
+      <div *ngSwitchCase="2" class="badge badge-warning">normal</div>
+      <div *ngSwitchCase="3" class="badge badge-danger">difícil</div>
+      <div *ngSwitchCase="4" class="badge badge-dark">muy difícil</div>
+      <div *ngSwitchDefault>--</div>
+    </div>
+    <div class="col-auto badge badge-primary">{{recipe.category}}</div>
+  </div>
+  <div class="row">
+      <div class="col-md-4 alert alert-info">
+          <ul *ngFor="let ingr of recipe.ingredients">
+              <li><span>{{ingr.name}}</span><span class="badge">{{ingr.quantity}}</span></li>
+            </ul>
+      </div>
+      <div class="col-md-8">
+            <div *ngFor="let step of recipe.steps; let i = index">
+              <p class="alert alert-warning">#{{i+1}} - {{step.description}}</p>
+            </div>
+      </div>
+  </div>
+</div>
