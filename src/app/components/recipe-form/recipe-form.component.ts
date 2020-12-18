@@ -124,4 +124,12 @@ export class RecipeFormComponent implements OnInit {
       this.steps.splice(index,1)
     }
   }
+  deleteRecipe(id: string){
+    this.recipesService.deleteRecipe(id).subscribe(
+      res=>{console.log(res); 
+        this.router.navigate(['recipes/']);
+      },
+      err=>{console.log(err);}
+    );
+  }
 }
