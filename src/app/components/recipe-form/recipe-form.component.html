@@ -72,6 +72,6 @@
 <div class="col-md-4">
   <img class="img-thumbnail" name="imagePreview" [src]="url" *ngIf="url">
   <button *ngIf="recipe._id" class="btn btn-danger btn-block my-3" (click)="deleteRecipe(recipe._id)">Eliminar Receta</button>
-  <a *ngIf="recipe._id" routerLink="/recipes/view/{{recipe._id}}" class="btn btn-success btn-block my-3" >Volver</a>
-  <button *ngIf="!recipe._id" class="btn btn-success btn-block mt-4" (click)="saveRecipe()">Guardar receta</button>
+  <button class="btn btn-success btn-block mt-4" (click)="saveRecipe()">Guardar receta</button>
+  <a *ngIf="recipe._id" routerLink="/recipes/view/{{recipe._id}}" class="btn btn-info btn-block my-3" >Volver</a>
 </div>

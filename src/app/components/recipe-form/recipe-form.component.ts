@@ -58,8 +58,9 @@ export class RecipeFormComponent implements OnInit {
                   this.router.navigate(['recipes/view/'+this.id]);
                 }, err => { console.log(err) }
               );
+          } else {
+            this.router.navigate(['recipes/view/'+this.id]);
           }
-          this.router.navigate(['recipes/view/'+this.id]);
         }, err => { console.log(err) }
       );
     } else {
@@ -67,8 +68,11 @@ export class RecipeFormComponent implements OnInit {
         res => { 
           if (this.image != null) {
             this.recipesService.saveImage(this.id, formData).subscribe(
-              res => { console.log(res);}, err => { console.log(err) }
+              res => { console.log(res);
+                this.router.navigate(['recipes/view/'+this.id]);
+              }, err => { console.log(err) }
             );
+          } else {
             this.router.navigate(['recipes/view/'+this.id]);
           }
         }, err => {console.log(err)}
