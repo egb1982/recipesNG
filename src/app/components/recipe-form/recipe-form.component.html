@@ -29,7 +29,7 @@
               <ul *ngIf="ingredients" class="list-group mb-3">
                 <li *ngFor="let ingr of ingredients; let i = index;" class="list-group-item list-group-item-info">
                     <div class="row">
-                      <div class="col"> {{ ingr.name }} ( {{ ingr.quantity }} )</div>
+                      <div class="col" (click)="editThisIngredient(i)"> {{ ingr.name }} ( {{ ingr.quantity }} )</div>
                       <div class="col-auto"><button class="btn btn-link" (click) = "deleteIngr(i)">X</button></div>
                     </div>
                 </li>
@@ -51,7 +51,7 @@
               <ul *ngIf="steps" class="list-group mb-3">
                 <li *ngFor="let step of steps; let i = index;" class="list-group-item list-group-item-warning">
                   <div class="row">
-                    <div class="col"> {{ step.description }} </div>
+                    <div class="col" (click)="editThisStep(i)"> {{ step.description }} </div>
                     <div class="col-auto"><button class="btn btn-link" (click) = "deleteStep(i)">X</button></div>
                   </div>
                 </li>
@@ -71,7 +71,7 @@
 </div>
 <div class="col-md-4">
   <img class="img-thumbnail" name="imagePreview" [src]="url" *ngIf="url">
-  <button *ngIf="recipe._id" class="btn btn-danger btn-block my-3" (click)="deleteRecipe(recipe._id)">Eliminar Receta</button>
+  <button *ngIf="id" class="btn btn-danger btn-block my-3" (click)="deleteRecipe(id)">Eliminar Receta</button>
   <button class="btn btn-success btn-block mt-4" (click)="saveRecipe()">Guardar receta</button>
-  <a *ngIf="recipe._id" routerLink="/recipes/view/{{recipe._id}}" class="btn btn-info btn-block my-3" >Volver</a>
+  <a *ngIf="id" routerLink="/recipes/view/{{id}}" class="btn btn-info btn-block my-3" >Volver</a>
 </div>
