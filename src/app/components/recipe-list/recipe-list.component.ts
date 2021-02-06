@@ -1,4 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Recipe } from 'src/app/models/Recipe';
 import {RecipesService} from 'src/app/services/recipes.service';
 import { environment } from 'src/environments/environment';
@@ -14,11 +15,17 @@ export class RecipeListComponent implements OnInit {
 
   recipes: Recipe[] = null;
   server: string = environment.API_URL;
+  subscription: Subscription;
 
   constructor(private recipesService: RecipesService) { }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
   ngOnInit() {
     this.getRecipes();
+    this.subscription = this.recipesService.getSearchResults().subscribe(res => this.recipes = res)
   }
 
   getRecipes(){

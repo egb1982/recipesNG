@@ -4,7 +4,9 @@
         <h4>{{recipe.name}}</h4>
         <button class="btn btn-danger ml-auto" (click)="deleteRecipe(recipe._id)">X</button>
       </div>
-      <img class="card-img-top img-thumbnail" [src]="recipe.imagePath ? server + recipe.imagePath : server +'/no-image.png'">
+      <figure>
+        <img class="card-img-top img-thumbnail" [src]="recipe.imagePath ? server + recipe.imagePath : server +'/no-image.png'">
+      </figure>
       <div class="card-body">  
         <a routerLink="/recipes/view/{{recipe._id}}" class="btn btn-success btn-block">ver receta</a>
       </div>

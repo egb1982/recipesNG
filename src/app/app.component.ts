@@ -1,10 +1,20 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { NavigationComponent } from './components/navigation/navigation.component';
+ 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'My Cooking Book';
+  public searchTerm:string = "";
+
+  constructor(private router: Router) { }
+
+  clearFilter() {
+    this.searchTerm = "";
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.navigate(['recipes/']);
+  }
 }
