@@ -32,6 +32,7 @@ export class RecipeFormComponent implements OnInit {
   steps = null;
   step: string;
   image: File = null;
+  editing = {stat:false, field:'',index:null}
 
   ngOnInit() {
     if (this.route.snapshot.paramMap.get('id') != null){
@@ -135,5 +136,39 @@ export class RecipeFormComponent implements OnInit {
       },
       err=>{console.log(err);}
     );
+  }
+
+  editIngr(index:number) {
+    let ingr = this.ingredients[index];
+    this.ingredient = ingr.name ;
+    this.quantity = ingr.quantity;
+    this.editing = {stat:true,field:'I',index};
+  }
+
+  editStep(index:number) {
+    this.step = this.steps[index].description;
+    this.editing = {stat:true,field:'S',index};
+  }
+
+  modify(){
+
+    if (this.editing.stat) {
+      let index = this.editing.index;
+      let field = this.editing.field;
+
+      if ( field === 'I') {
+        this.ingredients[index].name = this.ingredient;
+        this.ingredients[index].quantity = this.quantity;
+
+        this.ingredient = '';
+        this.quantity = '';
+      }
+      if (field === 'S') {
+        this.steps[index].description = this.step;
+
+        this.step = '';
+      }
+      this.editing = {stat:false,field:'',index:null}
+    }
   }
 }
