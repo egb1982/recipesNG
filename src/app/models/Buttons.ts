@@ -1,0 +1,5 @@
+interface ButtonsConfig {
+    action:Function,
+    
+
+}
