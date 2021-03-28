@@ -2,25 +2,26 @@
   <div class="card text-center mb-3">
       <div class="card-header text-white bg-dark d-flex justify-content-between align-items-center">          
         <h4>{{recipe.name}}</h4>
-        <button class="btn btn-link ml-auto cCloseBtn" (click)="deleteRecipe(recipe._id)">
-          <h1><i class="bi bi-x-circle-fill text-danger"></i></h1></button>
+        <button class="btn btn-primary ml-auto cEditBtn" routerLink="/recipes/edit/{{recipe._id}}">
+          <i class="bi bi-pencil text-danger"></i>
+        </button>
       </div>
       <figure class="img-thumbnail">
         <img class="card-img-top" [src]="recipe.imagePath ? server + recipe.imagePath : server +'/no-image.png'">
       </figure>
       <div class="card-body">  
-        <a routerLink="/recipes/view/{{recipe._id}}" class="btn btn-success btn-block">ver receta</a>
+        <a routerLink="/recipes/view/{{recipe._id}}" class="btn btn-success btn-block"><i class="bi bi-eye"></i><span class="mx-2">Ver receta</span></a>
       </div>
       <div class="card-footer">
-        <div class="badge badge-primary">{{recipe.category}}</div>
-        <div [ngSwitch]="recipe.difficulty">
+        <h5><div class="badge badge-primary">{{recipe.category}}</div></h5>
+        <h5 [ngSwitch]="recipe.difficulty">
           <div *ngSwitchCase="0" class="badge badge-info">muy fácil</div>
           <div *ngSwitchCase="1" class="badge badge-success">fácil</div>
-          <div *ngSwitchCase="2" class="badge badge-warning">media</div>
+          <div *ngSwitchCase="2" class="badge badge-warning text-dark">media</div>
           <div *ngSwitchCase="3" class="badge badge-danger">difícil</div>
           <div *ngSwitchCase="4" class="badge badge-dark">muy difícil</div>
           <div *ngSwitchDefault>--</div>
-        </div>
+        </h5>
       </div>
   </div>
 </div>

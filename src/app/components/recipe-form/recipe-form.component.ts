@@ -93,10 +93,13 @@ export class RecipeFormComponent implements OnInit {
   }
   getRecipe(id: string){
     this.recipesService.getRecipe(id).subscribe(
-      res => {this.recipe = res , 
-          this.url = environment.API_URL + res.imagePath;
+      res => {this.recipe = res;
+          let imagePath = res.imagePath || '/no-image.png';
+          this.url = environment.API_URL + imagePath ;
           this.ingredients = res.ingredients;
           this.steps = res.steps;
+
+
         },
       err => console.log(err)
     );

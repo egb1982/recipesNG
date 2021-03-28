@@ -1,21 +1,21 @@
 <div class="container-fluid" *ngIf="recipe">
   <div class="row">
-      <div class="col-md-11"><h1>{{recipe.name}}</h1></div>
-      <div class="col-md-1 float-right">
-        <a routerLink="/recipes/edit/{{recipe._id}}" class="btn btn-danger btn-block"><i class="bi bi-pencil"></i>Editar</a>
+      <div class="col"><h1>{{recipe.name}}</h1></div>
+      <div class="col-md-auto float-right">
+        <a routerLink="/recipes/edit/{{recipe._id}}" class="btn btn-danger btn-block"><i class="bi bi-pencil"></i><span class="mx-2">Editar</span></a>
       </div>        
   </div>
   <img *ngIf="recipe.imagePath" src="{{server + recipe.imagePath}}" class="img-thumbnail" width="200px">
   <div class="row my-3">
-    <div class="col-auto" [ngSwitch]="recipe.difficulty">
+    <h5 class="col-auto" [ngSwitch]="recipe.difficulty">
       <div *ngSwitchCase="0" class="badge badge-info">muy fácil</div>
       <div *ngSwitchCase="1" class="badge badge-success">fácil</div>
-      <div *ngSwitchCase="2" class="badge badge-warning">media</div>
+      <div *ngSwitchCase="2" class="badge badge-warning text-dark">media</div>
       <div *ngSwitchCase="3" class="badge badge-danger">difícil</div>
       <div *ngSwitchCase="4" class="badge badge-dark">muy difícil</div>
       <div *ngSwitchDefault>--</div>
-    </div>
-    <div class="col-auto badge badge-primary">{{recipe.category}}</div>
+    </h5>
+    <h5 class="col-auto badge badge-primary">{{recipe.category}}</h5>
   </div>
   <div class="row">
       <div class="col-md-4 alert alert-info">
