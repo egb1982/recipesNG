@@ -1,0 +1,18 @@
+div.card {
+    background-color: transparent;
+    border-color: white;
+    color: white;
+
+    .form-control{
+        border-color:khaki;
+        background-color: transparent;
+        color:white;
+        &::placeholder {
+            color:darkgray;
+        }
+    }
+}
+
+.btn {
+    border-color: white;
+}

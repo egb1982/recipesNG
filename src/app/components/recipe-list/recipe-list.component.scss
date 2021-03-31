@@ -1,9 +1,28 @@
 
-.card {
-    box-shadow: 5px 5px 15px black;
+div.card {
+    background-color: transparent;
+    border-color: white;
+    color: white;
+
+    .form-control{
+        border-color:khaki;
+        background-color: transparent;
+        color:white;
+        &::placeholder {
+            color:darkgray;
+        }
+    }
+    .btn, .card-footer {
+        border-color: white;
+    }
+    .badge
+    {
+        border: 2px solid white;
+    }
     figure{
         height: 12em;
         overflow: hidden;
+        background-color: rgba($color: #fff, $alpha: 0.2);
         img {
             object-fit: contain;
             object-position: center;

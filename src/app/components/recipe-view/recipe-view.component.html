@@ -1,6 +1,6 @@
 <div class="container-fluid" *ngIf="recipe">
   <div class="row">
-      <div class="col"><h1>{{recipe.name}}</h1></div>
+      <div class="col text-white"><h1 class="display-3">{{recipe.name}}</h1></div>
       <div class="col-md-auto float-right">
         <a routerLink="/recipes/edit/{{recipe._id}}" class="btn btn-danger btn-block"><i class="bi bi-pencil"></i><span class="mx-2">Editar</span></a>
       </div>        
@@ -15,10 +15,10 @@
       <div *ngSwitchCase="4" class="badge badge-dark">muy difícil</div>
       <div *ngSwitchDefault>--</div>
     </h5>
-    <h5 class="col-auto badge badge-primary">{{recipe.category}}</h5>
+    <h5 class="col-auto"><span class="badge badge-primary">{{recipe.category}}</span></h5>
   </div>
   <div class="row">
-      <div class="col-md-4 alert alert-info">
+      <div class="col-md-4">
         <nav>
           <button class="btn btn-link" (click)="reproduceIngredients()" [ngClass]="(playbackStatus == 'playing' || playbackStatus == 'paused') ? 'd-none' : ''">
             <h1><i class="bi bi-play-circle-fill text-info"></i></h1>
@@ -33,14 +33,16 @@
             <h1><i class="bi bi-stop-circle-fill text-danger"></i></h1>
           </button>
         </nav>
-        <ul *ngFor="let ingr of recipe.ingredients">
-          <li><span>{{ingr.name}}</span><span class="badge">{{ingr.quantity}}</span></li>
-        </ul>
+        <div class="alert alert-dismissible alert-info">
+          <ul *ngFor="let ingr of recipe.ingredients">
+            <li><span>{{ingr.name}}</span><span class="badge">{{ingr.quantity}}</span></li>
+          </ul>
+        </div>
       </div>
       <div class="col-md-8">
         <button class="btn btn-link" (click)="reproduceSteps()"><h1><i class="bi bi-play-circle-fill text-info"></i></h1></button>
         <div *ngFor="let step of recipe.steps; let i = index">
-          <p class="alert alert-warning">#{{i+1}} - {{step.description}}</p>
+          <p class="alert alert-dismissible alert-warning">#{{i+1}} - {{step.description}}</p>
         </div>
       </div>
   </div>
