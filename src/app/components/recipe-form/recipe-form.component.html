@@ -3,15 +3,15 @@
       <div class="card-body">
         <form enctype="multipart/form-data">
           <div class="form-group">
-            <label>Receta:</label>
+            <label class="text-info">Receta:</label>
             <input type="text" name="name" [(ngModel)]="recipe.name" placeholder="que receta vas a introducir?" class="form-control">
           </div>
           <div class="form-group">
-              <label>Categoría:</label>
+              <label class="text-info">Categoría:</label>
               <input type="text" name="category" [(ngModel)]="recipe.category" placeholder="ejemplo: tradicional, postre, básico" class="form-control">
           </div>
           <div class="form-group">
-              <label>Dificultad:</label>
+              <label class="text-info">Dificultad:</label>
               <select name="difficulty" class="form-control" [(ngModel)]="recipe.difficulty">
                 <option value=0>muy fácil</option>
                 <option value=1>fácil</option>
@@ -21,18 +21,18 @@
               </select>
           </div>
           <div class="form-group">
-            <label>Imagen:</label>
+            <label class="text-info">Imagen:</label>
             <input #image type="file" accept="image/*" name="image" class="form-control-file" (change)="processFile(image)" >
           </div>
           <div class="form-group">
-              <label>Ingredientes:</label>
+              <label class="text-info">Ingredientes:</label>
               <ul *ngIf="ingredients" class="list-group mb-3">
                 <li *ngFor="let ingr of ingredients; let i = index;" class="list-group-item list-group-item-info">
                     <div class="row">
                       <div class="col"> {{ ingr.name }} ( {{ ingr.quantity }} )</div>
                       <div class="col-auto">
-                        <button class="btn btn-link" (click) = "editIngr(i)"><i class="bi bi-pencil"></i></button>
-                        <button class="btn btn-link" (click) = "deleteIngr(i)">X</button></div>
+                        <button class="btn btn-link text-info" (click) = "editIngr(i)"><i class="bi bi-pencil"></i></button>
+                        <button class="btn btn-link text-info" (click) = "deleteIngr(i)">X</button></div>
                     </div>
                 </li>
               </ul>
@@ -44,20 +44,20 @@
                   <input type="text" name="quantity" [(ngModel)]="quantity" placeholder="Que cantidad necesitas?" class="form-control">
                 </div>
                 <div class="col-md-2">
-                    <button [ngClass]="(editing.stat && editing.field == 'I') ? 'd-none' : ''" class="btn btn-primary ml-auto" (click)="addIngredient()">Añadir</button>
-                    <button [ngClass]="(editing.stat && editing.field == 'I') ? '' : 'd-none'" class="btn btn-primary ml-auto" (click)="modify()">Modificar</button>
+                    <button [ngClass]="(editing.stat && editing.field == 'I') ? 'd-none' : ''" class="btn btn-outline-light ml-auto" (click)="addIngredient()">Añadir</button>
+                    <button [ngClass]="(editing.stat && editing.field == 'I') ? '' : 'd-none'" class="btn btn-outline-light ml-auto" (click)="modify()">Modificar</button>
                 </div> 
               </div>
           </div>      
           <div class="form-group">
-              <label>Pasos:</label>
+              <label class="text-info">Pasos:</label>
               <ul *ngIf="steps" class="list-group mb-3">
                 <li *ngFor="let step of steps; let i = index;" class="list-group-item list-group-item-warning">
                   <div class="row">
                     <div class="col" (click)="editThisStep(i)"> {{ step.description }} </div>
                     <div class="col-auto">
-                      <button class="btn btn-link" (click) = "editStep(i)"><i class="bi bi-pencil"></i></button>
-                      <button class="btn btn-link" (click) = "deleteStep(i)">X</button>
+                      <button class="btn btn-link text-warning" (click) = "editStep(i)"><i class="bi bi-pencil"></i></button>
+                      <button class="btn btn-link text-warning" (click) = "deleteStep(i)">X</button>
                     </div>
                   </div>
                 </li>
@@ -67,8 +67,8 @@
                     <textarea name="step" [(ngModel)]="step" placeholder="introduce las instrucciones" class="form-control"></textarea>
                 </div>
                 <div class="col-md-2">
-                    <button [ngClass]="(editing.stat && editing.field == 'S') ? 'd-none' : ''" class="btn btn-primary" (click)="addStep()">Añadir</button>
-                    <button [ngClass]="(editing.stat && editing.field == 'S') ? '' : 'd-none'" class="btn btn-primary ml-auto" (click)="modify()">Modificar</button>
+                    <button [ngClass]="(editing.stat && editing.field == 'S') ? 'd-none' : ''" class="btn btn-outline-light" (click)="addStep()">Añadir</button>
+                    <button [ngClass]="(editing.stat && editing.field == 'S') ? '' : 'd-none'" class="btn btn-outline-light ml-auto" (click)="modify()">Modificar</button>
                 </div> 
               </div>
           </div>
@@ -78,8 +78,8 @@
 </div>
 <div class="col-md-4">
   <img *ngIf="url" class="img-thumbnail" name="imagePreview" [src]="url">
-  <button *ngIf="id" class="btn btn-danger btn-block my-3" (click)="deleteRecipe(id)"><i class="bi bi-x-square"></i><span class="mx-2">Eliminar receta</span></button>
-  <button class="btn btn-success btn-block mt-4" (click)="saveRecipe()"><i class="bi bi-save"></i><span class="mx-2">Guardar receta</span></button>
-  <a *ngIf="id" routerLink="/recipes/view/{{id}}" class="btn btn-info btn-block my-3" ><i class="bi bi-arrow-return-left"></i><span class="mx-2">Volver a la vista</span></a>
-  <a routerLink="/recipes" class="btn btn-light btn-block my-3" ><i class="bi bi-house"></i><span class="mx-2">Volver al listado</span></a>
+  <button *ngIf="id" class="btn btn-outline-danger btn-block my-3" (click)="deleteRecipe(id)"><i class="bi bi-x-square"></i><span class="mx-2">Eliminar receta</span></button>
+  <button class="btn btn-outline-success btn-block mt-4" (click)="saveRecipe()"><i class="bi bi-save"></i><span class="mx-2">Guardar receta</span></button>
+  <a *ngIf="id" routerLink="/recipes/view/{{id}}" class="btn btn-outline-info btn-block my-3" ><i class="bi bi-arrow-return-left"></i><span class="mx-2">Volver a la vista</span></a>
+  <a routerLink="/recipes" class="btn btn-outline-light btn-block my-3" ><i class="bi bi-house"></i><span class="mx-2">Volver al listado</span></a>
 </div>
