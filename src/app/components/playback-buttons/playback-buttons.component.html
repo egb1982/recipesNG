@@ -1,1 +1,14 @@
-<div></div>
+<nav class="playerContainer my-2 text-right">
+    <button class="btn btn-outline-light mx-2" (click)="reproduce(speakingList)" [ngClass]="(playbackStatus == 'playing' || playbackStatus == 'paused') ? 'd-none' : ''">
+        <i class="bi bi-play"></i>
+    </button>
+    <button class="btn btn-outline-success mx-2" (click)="resume()" [ngClass]="(playbackStatus == 'paused') ? '' : 'd-none'">
+        <i class="bi bi-play"></i>
+    </button>
+    <button class="btn btn-outline-warning mx-2" (click)="pause()" [ngClass]="(playbackStatus == 'playing') ? '' : 'd-none'">
+        <i class="bi bi-pause"></i>
+    </button>
+    <button class="btn btn-outline-danger mx-2" (click)="cancel()" [ngClass]="(playbackStatus == 'playing' || playbackStatus == 'paused') ? '' : 'd-none'">
+        <i class="bi bi-stop"></i>
+    </button>
+</nav>
