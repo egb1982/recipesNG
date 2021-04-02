@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { Recipe } from "src/app/models/Recipe";
@@ -20,16 +20,13 @@ export class RecipeViewComponent implements OnInit {
   constructor(private recipesService: RecipesService, 
     private route: ActivatedRoute, 
     public speechUtteranceService: SpeechSynthesisUtteranceFactoryService,
-    public speechSynthService: SpeechSynthesisService,
-    private zone: NgZone) { }
+    public speechSynthService: SpeechSynthesisService) { }
 
   recipe: Recipe;
   id: string = this.route.snapshot.paramMap.get('id');
   server: String = environment.API_URL;
-  playbackStatus: string;
   ingredientsList: SpeechSynthesisUtterance;
   stepsList: SpeechSynthesisUtterance;
-  //buttonsConfig:
 
   ngOnInit() {
     this.getRecipe(this.id);
@@ -41,38 +38,9 @@ export class RecipeViewComponent implements OnInit {
         this.recipe = res;
         this.ingredientsList = this.loadIngredients(this.recipe.ingredients);
         this.stepsList = this.loadSteps(this.recipe.steps);
-        this.setListeners(this.ingredientsList);
-        this.setListeners(this.stepsList);
       },
       err => console.log(err)
     );
-  }
-
-  setListeners( speechSyntUtt:SpeechSynthesisUtterance ) {
-    speechSyntUtt.onstart = () =>{
-      this.zone.run( () => {
-        this.playbackStatus = 'playing';
-        console.log(this.playbackStatus);  
-      });
-    }
-    speechSyntUtt.onend = () =>{
-      this.zone.run( () => {
-        this.playbackStatus = 'stopped';
-        console.log(this.playbackStatus);
-        });
-    }
-    speechSyntUtt.onpause = () =>{
-      this.zone.run( () => {
-        this.playbackStatus = 'paused';
-        console.log(this.playbackStatus);
-        });
-    }
-    speechSyntUtt.onresume = () =>{
-      this.zone.run( () => {
-        this.playbackStatus = 'playing';
-        console.log(this.playbackStatus);
-        });
-    }
   }
 
   loadIngredients(ingredientsList: any){
@@ -91,30 +59,4 @@ export class RecipeViewComponent implements OnInit {
     }
     return this.speechUtteranceService.text(voiceStep.join("\n"));
   }
-
-  reproduceIngredients() {
-    this.cancel();
-    this.speak(this.ingredientsList);
-  }
-
-  reproduceSteps() {
-    this.cancel();
-    this.speak(this.stepsList)
-  }
-
-  speak(voicemsg){
-    this.speechSynthService.speak(voicemsg);
-  }
-
-  cancel() {
-    this.speechSynthService.cancel();
-  }
-  pause() {
-    this.speechSynthService.pause();
-  }
-
-  resume() {
-    this.speechSynthService.resume();
-  }
-
-  }
+}
