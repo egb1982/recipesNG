@@ -1,0 +1,9 @@
+#searchTerm {
+    width: 40em;
+    border-color: white;
+    background-color: transparent;
+    color: white;
+    & ~ div.input-group-append > button {
+        border-color: white;
+    }
+}
