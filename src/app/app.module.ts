@@ -14,6 +14,7 @@ import { RecipeViewComponent } from './components/recipe-view/recipe-view.compon
 import { SpeechSynthesisModule } from '@kamiazya/ngx-speech-synthesis';
 import { PlaybackButtonsComponent } from './components/playback-buttons/playback-buttons.component';
 
+import {ImageToUrlPipe} from './pipes/image.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PlaybackButtonsComponent } from './components/playback-buttons/playback
     RecipeFormComponent,
     RecipeListComponent,
     RecipeViewComponent,
-    PlaybackButtonsComponent
+    PlaybackButtonsComponent,
+    ImageToUrlPipe
   ],
   imports: [
     BrowserModule,

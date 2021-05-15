@@ -7,7 +7,7 @@
         </button>
       </div>
       <figure class="img-thumbnail">
-        <img class="card-img-top" [src]="recipe.imagePath ? server + recipe.imagePath : server +'/no-image.png'">
+        <img class="card-img-top" [src]="(recipe.image ? recipe.image.data.data : undefined) | imageToUrl">
       </figure>
       <div class="card-body">  
         <a routerLink="/recipes/view/{{recipe._id}}" class="btn btn-outline-success btn-block"><i class="bi bi-eye"></i><span class="mx-2">Ver receta</span></a>

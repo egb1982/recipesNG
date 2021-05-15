@@ -17,6 +17,6 @@ export interface Recipe {
         [key: string]: Step 
     };
     imagePath?: string;
+    imageId?: string;
     created:Date;
-    form?: FormData;
 }

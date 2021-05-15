@@ -28,25 +28,21 @@ export class PlaybackButtonsComponent implements OnInit {
     speechSyntUtt.onstart = () =>{
       this.zone.run( () => {
         this.playbackStatus = 'playing';
-        console.log(this.playbackStatus);  
       });
     }
     speechSyntUtt.onend = () =>{
       this.zone.run( () => {
         this.playbackStatus = 'stopped';
-        console.log(this.playbackStatus);
         });
     }
     speechSyntUtt.onpause = () =>{
       this.zone.run( () => {
         this.playbackStatus = 'paused';
-        console.log(this.playbackStatus);
         });
     }
     speechSyntUtt.onresume = () =>{
       this.zone.run( () => {
         this.playbackStatus = 'playing';
-        console.log(this.playbackStatus);
         });
     }
   }

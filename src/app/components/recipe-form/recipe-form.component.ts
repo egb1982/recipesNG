@@ -3,6 +3,7 @@ import { Recipe } from 'src/app/models/Recipe';
 import { ActivatedRoute, Router } from '@angular/router';
 import {RecipesService} from 'src/app/services/recipes.service';
 import { environment } from 'src/environments/environment';
+import { ImageToUrlPipe } from 'src/app/pipes/image.pipe';
 
 @Component({
   selector: 'app-recipe-form',
@@ -94,12 +95,11 @@ export class RecipeFormComponent implements OnInit {
   getRecipe(id: string){
     this.recipesService.getRecipe(id).subscribe(
       res => {this.recipe = res;
-          let imagePath = res.imagePath || '/no-image.png';
-          this.url = environment.API_URL + imagePath ;
+          //let imagePath = res.imagePath || '/no-image.png';
+          //this.url = environment.API_URL + imagePath ;
+          this.url = res["image"].data.data;
           this.ingredients = res.ingredients;
           this.steps = res.steps;
-
-
         },
       err => console.log(err)
     );

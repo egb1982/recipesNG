@@ -6,7 +6,7 @@
         <a routerLink="/recipes" class="btn btn-outline-light btn-block"><i class="bi bi-house"></i><span class="mx-2">Volver al listado</span></a>
       </div>        
   </div>
-  <img *ngIf="recipe.imagePath" src="{{server + recipe.imagePath}}" class="img-thumbnail" width="200px">
+  <img *ngIf="recipe.imagePath" [src]="(recipe.image ? recipe.image.data.data : undefined) | imageToUrl" class="img-thumbnail" height="200px">
   <div class="row my-3">
     <h5 class="col-auto" [ngSwitch]="recipe.difficulty">
       <div *ngSwitchCase="0" class="badge badge-pill badge-info">muy fácil</div>

@@ -89,4 +89,9 @@ export class RecipesService {
   updateRecipe(id:string, updatedRecipe: Recipe){
     return this.http.put(`${this.API_URI}/recipes/${id}`, updatedRecipe);
   }
+
+  getThumbnail(id:string){
+    return this.http.get(`${this.API_URI}/thumb/${id}`)    
+  }
+
 }
