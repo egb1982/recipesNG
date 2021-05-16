@@ -17,6 +17,8 @@ export class RecipeListComponent implements OnInit {
 
   constructor(private recipesService: RecipesService) { }
 
+  isShownShare:boolean = false;
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

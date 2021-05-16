@@ -15,6 +15,7 @@ import { SpeechSynthesisModule } from '@kamiazya/ngx-speech-synthesis';
 import { PlaybackButtonsComponent } from './components/playback-buttons/playback-buttons.component';
 
 import {ImageToUrlPipe} from './pipes/image.pipe';
+import { ShareRecipeComponent } from './components/share-recipe/share-recipe.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {ImageToUrlPipe} from './pipes/image.pipe';
     RecipeListComponent,
     RecipeViewComponent,
     PlaybackButtonsComponent,
-    ImageToUrlPipe
+    ImageToUrlPipe,
+    ShareRecipeComponent
   ],
   imports: [
     BrowserModule,
