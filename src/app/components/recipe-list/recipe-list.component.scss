@@ -20,9 +20,6 @@ div.card {
         border: 2px solid white;
     }
     figure{
-        height: 12em;
-        overflow: hidden;
-        background-color: rgba($color: #fff, $alpha: 0.2);
         img {
             object-fit: contain;
             object-position: center;
