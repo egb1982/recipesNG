@@ -11,8 +11,8 @@ export class ImageToUrlPipe implements PipeTransform  {
 
     let server: string = environment.API_URL;
 
-    if ((typeof value) === "string") return value;
     if (!value) return server +'/no-image.png';
+    if ((typeof value) === "string") return value;
 
     let TYPED_ARRAY = new Uint8Array(value);
     const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);

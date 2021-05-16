@@ -6,7 +6,7 @@
         <a routerLink="/recipes" class="btn btn-outline-light btn-block"><i class="bi bi-house"></i><span class="mx-2">Volver al listado</span></a>
       </div>        
   </div>
-  <img *ngIf="recipe.imagePath" [src]="(recipe.image ? recipe.image.data.data : undefined) | imageToUrl" class="img-thumbnail" height="200px">
+  <img [src]="(recipe.image ? recipe.image.data.data : undefined) | imageToUrl" class="img-thumbnail" height="200px">
   <div class="row my-3">
     <h5 class="col-auto" [ngSwitch]="recipe.difficulty">
       <div *ngSwitchCase="0" class="badge badge-pill badge-info">muy fácil</div>
@@ -19,7 +19,7 @@
     <h5 class="col-auto"><span class="badge badge-pill badge-primary">{{recipe.category}}</span></h5>
   </div>
   <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4" *ngIf="ingredientsList">
         <app-playback-buttons [record]=ingredientsList></app-playback-buttons>
         <div class="alert alert-dismissible alert-info">
           <ul *ngFor="let ingr of recipe.ingredients">
@@ -27,7 +27,7 @@
           </ul>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8" *ngIf="stepsList">
         <app-playback-buttons [record]=stepsList></app-playback-buttons>
         <div *ngFor="let step of recipe.steps; let i = index">
           <p class="alert alert-dismissible alert-warning"><span class="h1 mr-2"><em>{{i+1}}.</em></span>{{step.description}}</p>
