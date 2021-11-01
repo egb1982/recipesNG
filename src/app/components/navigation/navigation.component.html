@@ -2,10 +2,14 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <a class="navbar-brand" routerLink="/recipes"><i class="bi bi-house"></i><span class="mx-2">Mi libro de cocina</span></a>
     <div class="mr-auto">
-      <a class="btn btn-outline-secondary text-light" routerLink="/recipes/add"> 
+<!--       <a class="btn btn-outline-secondary text-light" routerLink="/recipes/add"> 
         <i class="bi bi-journal-plus"></i>
         <span class="mx-2">Nueva receta</span>
-      </a>  
+      </a>   -->
+    <button class="btn btn-outline-secondary text-light" (click)=openModal()>
+      <i class="bi bi-journal-plus"></i>
+        <span class="mx-2">Nueva receta</span>
+    </button>
     </div>
     <form>
       <div class="form-inline">

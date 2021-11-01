@@ -1,9 +1,7 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, EventEmitter, Output } from '@angular/core';
 import { Recipe } from 'src/app/models/Recipe';
 import { ActivatedRoute, Router } from '@angular/router';
 import {RecipesService} from 'src/app/services/recipes.service';
-import { environment } from 'src/environments/environment';
-import { ImageToUrlPipe } from 'src/app/pipes/image.pipe';
 
 @Component({
   selector: 'app-recipe-form',
@@ -12,6 +10,7 @@ import { ImageToUrlPipe } from 'src/app/pipes/image.pipe';
 })
 export class RecipeFormComponent implements OnInit {
 
+  @Output() public onSaveRecipe: EventEmitter<string> = new EventEmitter();
   @HostBinding('class') classes = 'row';
 
   recipe: Recipe = {
@@ -24,7 +23,10 @@ export class RecipeFormComponent implements OnInit {
   };
   url: any;
 
-  constructor(private recipesService: RecipesService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private recipesService: RecipesService, 
+    private route: ActivatedRoute, 
+    private router: Router) { }
   
   id: string = "";
   ingredients = null;
@@ -50,35 +52,39 @@ export class RecipeFormComponent implements OnInit {
       formData.append('image', this.image,this.image.name);
     }
 
-    if (this.id =='') {
+    
+    if (this.id =='') { //new recipe
       this.recipesService.saveRecipe(this.recipe).subscribe(
         res => { 
           this.id = res['recipe']._id;
           if (this.image != null) {
               this.recipesService.saveImage(this.id, formData).subscribe(
                 res => { console.log(res);
-                  this.router.navigate(['recipes/view/'+this.id]);
+                  this.router.navigate(['recipes/edit/'+this.id]);
                 }, err => { console.log(err) }
               );
           } else {
-            this.router.navigate(['recipes/view/'+this.id]);
+            this.router.navigate(['recipes/edit/'+this.id]);
           }
         }, err => { console.log(err) }
       );
-    } else {
+    } else { //updating
       this.recipesService.updateRecipe(this.id, this.recipe).subscribe(
         res => { 
           if (this.image != null) {
             this.recipesService.saveImage(this.id, formData).subscribe(
               res => { console.log(res);
-                this.router.navigate(['recipes/view/'+this.id]);
+                this.router.navigate(['recipes/edit/'+this.id]);
               }, err => { console.log(err) }
             );
           } else {
-            this.router.navigate(['recipes/view/'+this.id]);
+            this.router.navigate(['recipes/edit/'+this.id]);
           }
         }, err => {console.log(err)}
       );  
+    }
+    if (!this.id) { // close the modal for new recipes
+      this.onSaveRecipe.emit()
     }
   }
 
@@ -111,6 +117,8 @@ export class RecipeFormComponent implements OnInit {
     this.ingredients.push({name: this.ingredient, quantity: this.quantity});
     this.ingredient = "";
     this.quantity = "";
+    this.recipe.ingredients = this.ingredients;
+    this.recipesService.updateRecipe(this.id, this.recipe).subscribe(res =>console.log(res), err => console.log(err));  
   }
 
   addStep() {
@@ -119,18 +127,24 @@ export class RecipeFormComponent implements OnInit {
     }
     this.steps.push({description: this.step});
     this.step = "";
+    this.recipe.steps = this.steps;
+    this.recipesService.updateRecipe(this.id, this.recipe).subscribe(res =>console.log(res), err => console.log(err));  
   }
 
   deleteIngr(index:number) {
     if (index > -1){
       this.ingredients.splice(index,1)
     }
+    this.recipe.ingredients = this.ingredients;
+    this.recipesService.updateRecipe(this.id, this.recipe).subscribe(res =>console.log(res), err => console.log(err));  
   }
 
   deleteStep(index:number){
     if (index > -1){
       this.steps.splice(index,1)
     }
+    this.recipe.steps = this.steps;
+    this.recipesService.updateRecipe(this.id, this.recipe).subscribe(res =>console.log(res), err => console.log(err));
   }
   deleteRecipe(id: string){
     this.recipesService.deleteRecipe(id).subscribe(
@@ -154,7 +168,6 @@ export class RecipeFormComponent implements OnInit {
   }
 
   modify(){
-
     if (this.editing.stat) {
       let index = this.editing.index;
       let field = this.editing.field;
@@ -162,16 +175,17 @@ export class RecipeFormComponent implements OnInit {
       if ( field === 'I') {
         this.ingredients[index].name = this.ingredient;
         this.ingredients[index].quantity = this.quantity;
-
+        this.recipe.ingredients = this.ingredients;
         this.ingredient = '';
         this.quantity = '';
       }
       if (field === 'S') {
         this.steps[index].description = this.step;
-
+        this.recipe.steps = this.steps;
         this.step = '';
       }
       this.editing = {stat:false,field:'',index:null}
     }
+    this.recipesService.updateRecipe(this.id, this.recipe).subscribe(res =>console.log(res), err => console.log(err));
   }
 }
