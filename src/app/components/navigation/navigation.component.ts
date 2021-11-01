@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {RecipesService} from 'src/app/services/recipes.service';
+import { ModalNewRecipeComponent } from "../modal-new-recipe/modal-new-recipe.component";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-navigation',
@@ -10,9 +12,13 @@ export class NavigationComponent implements OnInit {
 
   @Output() public searchDone: EventEmitter<string> = new EventEmitter();
 
-  constructor(private recipesService: RecipesService) { }
+  constructor(private recipesService: RecipesService, private modalService:NgbModal) { }
 
   ngOnInit() {
+  }
+
+  openModal(){
+    this.modalService.open(ModalNewRecipeComponent)
   }
 
   recipeSearch(searchTerm){

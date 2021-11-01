@@ -15,6 +15,8 @@ import { SpeechSynthesisModule } from '@kamiazya/ngx-speech-synthesis';
 import { PlaybackButtonsComponent } from './components/playback-buttons/playback-buttons.component';
 
 import {ImageToUrlPipe} from './pipes/image.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalNewRecipeComponent } from './components/modal-new-recipe/modal-new-recipe.component';
 
 @NgModule({
   declarations: [
@@ -24,14 +26,16 @@ import {ImageToUrlPipe} from './pipes/image.pipe';
     RecipeListComponent,
     RecipeViewComponent,
     PlaybackButtonsComponent,
-    ImageToUrlPipe
+    ImageToUrlPipe,
+    ModalNewRecipeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    SpeechSynthesisModule.forRoot({lang:'es',volume:1.0,pitch:1.0, rate:1.0})
+    SpeechSynthesisModule.forRoot({lang:'es',volume:1.0,pitch:1.0, rate:1.0}),
+    NgbModule
   ],
   providers: [ RecipesService ],
   bootstrap: [ AppComponent ]
