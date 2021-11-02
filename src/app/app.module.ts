@@ -15,8 +15,10 @@ import { SpeechSynthesisModule } from '@kamiazya/ngx-speech-synthesis';
 import { PlaybackButtonsComponent } from './components/playback-buttons/playback-buttons.component';
 
 import {ImageToUrlPipe} from './pipes/image.pipe';
+import { ShareRecipeComponent } from './components/share-recipe/share-recipe.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalNewRecipeComponent } from './components/modal-new-recipe/modal-new-recipe.component';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { ModalNewRecipeComponent } from './components/modal-new-recipe/modal-new
     RecipeViewComponent,
     PlaybackButtonsComponent,
     ImageToUrlPipe,
+    ShareRecipeComponent,
     ModalNewRecipeComponent,
   ],
   imports: [

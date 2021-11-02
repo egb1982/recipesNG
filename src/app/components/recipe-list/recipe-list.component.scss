@@ -27,4 +27,14 @@ div.card {
             height: 100%;
         }
     }
+    .btn-group-toggle {
+        label {
+            & ~ app-share-recipe {
+                display: none;
+            }
+            &.active ~ app-share-recipe{
+                display: block;
+            }    
+        }
+    }
 }
