@@ -16,6 +16,9 @@ import { PlaybackButtonsComponent } from './components/playback-buttons/playback
 
 import {ImageToUrlPipe} from './pipes/image.pipe';
 import { ShareRecipeComponent } from './components/share-recipe/share-recipe.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalNewRecipeComponent } from './components/modal-new-recipe/modal-new-recipe.component';
+
 
 @NgModule({
   declarations: [
@@ -26,14 +29,16 @@ import { ShareRecipeComponent } from './components/share-recipe/share-recipe.com
     RecipeViewComponent,
     PlaybackButtonsComponent,
     ImageToUrlPipe,
-    ShareRecipeComponent
+    ShareRecipeComponent,
+    ModalNewRecipeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    SpeechSynthesisModule.forRoot({lang:'es',volume:1.0,pitch:1.0, rate:1.0})
+    SpeechSynthesisModule.forRoot({lang:'es',volume:1.0,pitch:1.0, rate:1.0}),
+    NgbModule
   ],
   providers: [ RecipesService ],
   bootstrap: [ AppComponent ]
