@@ -2,12 +2,14 @@
   <div class="card text-center mb-3">
       <div class="card-header text-white bg-dark d-flex justify-content-between align-items-center">          
         <h4>{{recipe.name}}</h4>
-        <div class="btn-group-toggle ml-auto" data-toggle="buttons" >
-          <label class="btn btn-secondary">
-            <input type="checkbox"><i class="bi bi-share"></i>
-          </label>
-          <app-share-recipe [recipeId]="recipe._id"></app-share-recipe>
-        </div>
+        <ng-template #popContent>
+            <div class="ml-auto">
+              <button class="btn btn-outline-success" type="button" id="button-copyToClipboard" (click)="copyLink(recipe._id)" popoverClass="customPopover">{{buttonText}}</button>
+            </div>
+        </ng-template>
+        <button type="button" class="btn btn-secondary ml-auto" [ngbPopover]="popContent" [autoClose]="'outside'" placement="bottom" (hidden)="clearPopover()" >
+          <i class="bi bi-share"></i>
+        </button>
         <button class="btn btn-outline-warning mx-2 cEditBtn" routerLink="/recipes/edit/{{recipe._id}}">
           <i class="bi bi-pencil"></i>
         </button>
