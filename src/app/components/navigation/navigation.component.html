@@ -1,58 +1,47 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-    <a class="navbar-brand" routerLink="/recipes"><i class="bi bi-house"></i><span class="mx-2">Mi libro de cocina</span></a>
+    <a class="navbar-brand" routerLink="/recipes">
+      <i class="bi bi-house"></i>
+      <span class="mx-2">Mi libro de cocina</span></a
+    >
     <div class="mr-auto">
-<!--       <a class="btn btn-outline-secondary text-light" routerLink="/recipes/add"> 
+      <button
+        class="btn btn-outline-secondary text-light"
+        (click)="openModalNewRecipe()"
+      >
         <i class="bi bi-journal-plus"></i>
         <span class="mx-2">Nueva receta</span>
-      </a>   -->
-    <button class="btn btn-outline-secondary text-light" (click)=openModal()>
-      <i class="bi bi-journal-plus"></i>
-        <span class="mx-2">Nueva receta</span>
-    </button>
+      </button>
     </div>
     <form>
       <div class="form-inline">
         <div class="input-group">
-            <input id="searchTerm" #searchTerm name="searchTerm" (enter)="recipeSearch(searchTerm.value)"  class="form-control" type="text" placeholder="Que te apetece?">
+          <input
+            id="searchTerm"
+            #searchTerm
+            name="searchTerm"
+            (enter)="recipeSearch(searchTerm.value)"
+            class="form-control"
+            type="text"
+            placeholder="Que te apetece?"
+          />
           <div class="input-group-append">
-            <button (click)="recipeSearch(searchTerm.value)" class="btn btn-outline-light text-info" type="submit">Buscar</button>
+            <button
+              (click)="recipeSearch(searchTerm.value)"
+              class="btn btn-outline-light text-info"
+              type="submit"
+            >
+              Buscar
+            </button>
           </div>
         </div>
       </div>
     </form>
-    <button class="btn btn-outline-secondary text-light ml-3" data-toggle="modal" data-target="#loginModal">
+    <button
+      class="btn btn-outline-secondary text-light ml-3"
+      (click)="openModalUser()"
+    >
       <i class="bi bi-person"></i>
     </button>
   </nav>
 </header>
-
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="loginModalLabel">Acceso</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="username" class="col-form-label">Usuario:</label>
-            <input type="text" class="form-control" id="username">
-          </div>
-          <div class="form-group">
-            <label for="password" class="col-form-label">Contraseña:</label>
-            <input type="password" class="form-control" id="password">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success mr-auto">Nuevo registro</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Acceder</button>
-      </div>
-    </div>
-  </div>
-</div>
