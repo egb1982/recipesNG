@@ -1,0 +1,53 @@
+<div class="modal-header bg-dark text-white">
+  <h4 class="modal-title">Login</h4>
+  <button
+    type="button"
+    class="close text-danger"
+    aria-label="Close"
+    (click)="activeModal.dismiss()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <i class="bi bi-envelope"></i>
+        </span>
+      </div>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="usuario@ejemplo.com"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <i class="bi bi-key"></i>
+        </span>
+      </div>
+      <input type="password" class="form-control" id="password" />
+    </div>
+
+    <button type="button" class="btn btn-primary ml-auto">Acceder</button>
+
+    <div>
+      <button type="button" class="btn btn-success mr-auto">
+        Nuevo registro
+      </button>
+    </div>
+  </form>
+</div>
+<div class="modal-footer bg-dark">
+  <button
+    type="button"
+    class="btn btn-outline-light"
+    (click)="activeModal.close()"
+  >
+    Cerrar
+  </button>
+</div>

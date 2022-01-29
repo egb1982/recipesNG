@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { RecipeFormComponent } from './recipe-form.component';
+import { ModalUserLoginComponent } from './modal-user-login.component';
 
-describe('RecipeFormComponent', () => {
-  let component: RecipeFormComponent;
-  let fixture: ComponentFixture<RecipeFormComponent>;
+describe('ModalUserLoginComponent', () => {
+  let component: ModalUserLoginComponent;
+  let fixture: ComponentFixture<ModalUserLoginComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecipeFormComponent ]
+      declarations: [ ModalUserLoginComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RecipeFormComponent);
+    fixture = TestBed.createComponent(ModalUserLoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
